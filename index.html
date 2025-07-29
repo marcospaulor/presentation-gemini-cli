@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Arquitetura com Gemini CLI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Academic Blue & Gray -->
+    <!-- Application Structure Plan: A single-page, vertical scrolling application with a sticky navigation bar. This structure was chosen to allow the user (advisor) to either follow a logical, story-like flow from problem to solution, or to use the navigation to jump directly to the most relevant section, such as the interactive demonstration. The core of the application is a simulated terminal that allows the user to 'run' pre-defined analysis commands, making the process tangible and understandable without a live demo setup. This non-linear, interactive approach is more engaging and respects the user's time more than a fixed slide progression. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Architectural Erosion concept -> Goal: Inform -> Viz/Method: HTML/CSS diagram (boxes and arrows) -> Interaction: Static -> Justification: A simple visual metaphor is more effective than text alone.
+        - Report Info: Demonstration Commands -> Goal: Demonstrate Process -> Viz/Method: Simulated Interactive Terminal (HTML/CSS/JS) -> Interaction: User clicks buttons to 'run' commands and see pre-scripted output -> Justification: This is the most critical interaction. It transforms abstract code blocks into a concrete, step-by-step experience, making the tool's value immediately apparent.
+        - Report Info: Benefits vs. Limitations -> Goal: Compare -> Viz/Method: Two-column layout with icons -> Interaction: Static -> Justification: Provides a quick, balanced, and easily digestible summary.
+        - Library/Method: Vanilla JS for all interactions (navigation clicks, terminal simulation tabs). Tailwind CSS for all styling. No Chart.js/Plotly.js needed as the data is conceptual, not numerical.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #334155; /* slate-700 */
+        }
+        .fira-code {
+            font-family: 'Fira Code', monospace;
+        }
+        .nav-link {
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .nav-link.active {
+            color: #4f46e5; /* indigo-600 */
+            border-bottom-color: #4f46e5;
+        }
+        .nav-link:not(.active):hover {
+            color: #312e81; /* indigo-800 */
+        }
+        .terminal-header {
+            background-color: #374151; /* gray-700 */
+        }
+        .terminal-body {
+            background-color: #1f2937; /* gray-800 */
+            color: #d1d5db; /* gray-300 */
+        }
+        .prompt-char {
+            color: #84cc16; /* lime-500 */
+        }
+        .command-text {
+            color: #e5e7eb; /* gray-200 */
+        }
+        .output-text {
+            color: #9ca3af; /* gray-400 */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="bg-slate-50/80 backdrop-blur-lg sticky top-0 z-50 border-b border-slate-200">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="text-lg md:text-xl font-bold text-indigo-600">
+                Análise de Arquitetura com IA
+            </h1>
+            <div class="hidden md:flex space-x-8">
+                <a href="#problema" class="nav-link font-medium text-slate-600 border-b-2 border-transparent pb-1">O Problema</a>
+                <a href="#ferramenta" class="nav-link font-medium text-slate-600 border-b-2 border-transparent pb-1">A Ferramenta</a>
+                <a href="#proposta" class="nav-link font-medium text-slate-600 border-b-2 border-transparent pb-1">A Proposta</a>
+                <a href="#demonstracao" class="nav-link font-medium text-slate-600 border-b-2 border-transparent pb-1">Demonstração</a>
+                <a href="#balanco" class="nav-link font-medium text-slate-600 border-b-2 border-transparent pb-1">Balanço</a>
+                <a href="#futuro" class="nav-link font-medium text-slate-600 border-b-2 border-transparent pb-1">Futuro</a>
+            </div>
+            <div class="md:hidden">
+                <!-- Mobile menu can be added here if needed -->
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 md:py-16">
+
+        <!-- Hero Section -->
+        <section id="hero" class="text-center mb-24">
+            <h2 class="text-4xl md:text-5xl font-bold text-slate-800 mb-4">Análise de Arquitetura de Software Assistida por IA</h2>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+                Uma exploração interativa de como o Google Gemini CLI pode ser utilizado para analisar e rastrear a evolução de repositórios de software, transformando um processo manual em uma análise ágil e inteligente.
+            </p>
+        </section>
+
+        <!-- Section 1: O Problema -->
+        <section id="problema" class="mb-24 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-slate-800">O Desafio da Análise Arquitetural Contínua</h3>
+                <p class="mt-2 text-slate-500">A arquitetura de software é um organismo vivo, mas a sua análise continua a ser um desafio crónico.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h4 class="font-bold text-xl text-slate-700 mb-4">Erosão Arquitetural: O Desvio Inevitável</h4>
+                    <div class="bg-white p-6 rounded-lg border border-slate-200">
+                        <div class="flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0">
+                            <div class="text-center p-4 bg-indigo-100 rounded-md">
+                                <span class="font-bold text-indigo-800">Arquitetura Planeada</span>
+                            </div>
+                            <div class="text-4xl text-slate-400 font-thin transform -rotate-90 md:rotate-0">➔</div>
+                            <div class="text-center p-4 bg-rose-100 rounded-md">
+                                <span class="font-bold text-rose-800">Implementação Real</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-slate-500 mt-4 text-center">Com o tempo, prazos e novas features, a implementação tende a desviar-se do plano original.</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-white p-4 rounded-lg border border-slate-200">
+                        <h5 class="font-bold text-slate-700">Análise Manual Lenta</h5>
+                        <p class="text-slate-600">Identificar o impacto de cada commit na arquitetura é um processo demorado e propenso a erros.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border border-slate-200">
+                        <h5 class="font-bold text-slate-700">Documentação Desatualizada</h5>
+                        <p class="text-slate-600">A documentação raramente acompanha a velocidade do desenvolvimento, tornando-se rapidamente obsoleta.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 text-center p-6 bg-indigo-50 border border-indigo-200 rounded-lg">
+                <p class="text-lg font-medium text-indigo-800">
+                    <span class="font-bold">Pergunta Central:</span> Como podemos criar um método mais eficiente e consistente para "fotografar" e "comparar" a arquitetura de um software ao longo do seu ciclo de vida?
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 2: A Ferramenta -->
+        <section id="ferramenta" class="mb-24 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-slate-800">Apresentando a Tecnologia</h3>
+                <p class="mt-2 text-slate-500">A resposta pode estar na combinação de IA de ponta com ferramentas de desenvolvimento.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg border border-slate-200">
+                    <h4 class="font-bold text-xl text-slate-700 mb-2">Google Gemini</h4>
+                    <p class="text-slate-600">Uma família de modelos de IA multimodais, capaz de compreender e processar de forma nativa texto, código, imagens e mais, oferecendo uma compreensão profunda e contextual.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg border border-slate-200 ring-2 ring-indigo-500">
+                     <h4 class="font-bold text-xl text-indigo-700 mb-2">Diferencial Chave: Gemini CLI</h4>
+                    <p class="text-slate-600">Uma interface de linha de comando que permite que a IA analise ficheiros e diretórios locais como <strong class="text-indigo-600">contexto (`--context`)</strong>. Isto garante a privacidade e a segurança do código-fonte, pois ele nunca sai do ambiente local.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: A Proposta -->
+        <section id="proposta" class="mb-24 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-slate-800">O Gemini CLI como "Analista de Arquitetura Assistente"</h3>
+                <p class="mt-2 text-slate-500">Automatizar e escalar a análise de arquitetura em dois cenários principais.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg border border-slate-200 space-y-4">
+                    <h4 class="font-bold text-xl text-slate-700">Cenário 1: Análise Estática</h4>
+                    <p class="text-slate-600">Analisar o estado atual do repositório (`HEAD`) para obter um "snapshot" da arquitetura.</p>
+                    <div class="fira-code text-sm bg-slate-100 p-4 rounded-md text-slate-800">
+                        <p class="font-medium">Exemplo de Pergunta:</p>
+                        <p class="mt-1">"Qual é a arquitetura geral deste projeto? Quais são os principais módulos e as suas responsabilidades?"</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg border border-slate-200 space-y-4">
+                    <h4 class="font-bold text-xl text-slate-700">Cenário 2: Análise Evolutiva</h4>
+                    <p class="text-slate-600">Analisar a <strong class="text-indigo-600">diferença (`diff`)</strong> entre dois commits para entender o impacto arquitetural das mudanças.</p>
+                     <div class="fira-code text-sm bg-slate-100 p-4 rounded-md text-slate-800">
+                        <p class="font-medium">Exemplo de Pergunta:</p>
+                        <p class="mt-1">"Analise este 'diff'. Quais foram as principais mudanças arquiteturais? O acoplamento entre módulos foi alterado?"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Demonstração -->
+        <section id="demonstracao" class="mb-24 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-slate-800">Demonstração Interativa</h3>
+                <p class="mt-2 text-slate-500">Vamos simular como o processo funciona na prática. Clique nos passos abaixo.</p>
+            </div>
+
+            <div class="bg-white p-4 sm:p-6 rounded-lg border border-slate-200">
+                <div class="flex flex-wrap gap-2 border-b border-slate-200 pb-4 mb-4">
+                    <button id="btn-step1" class="demo-btn active bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium">Passo 1: Analisar Commit Antigo</button>
+                    <button id="btn-step2" class="demo-btn bg-slate-200 text-slate-700 px-4 py-2 rounded-md text-sm font-medium">Passo 2: Analisar a Evolução (Diff)</button>
+                    <button id="btn-step3" class="demo-btn bg-slate-200 text-slate-700 px-4 py-2 rounded-md text-sm font-medium">Ver o Ficheiro `diff`</button>
+                </div>
+
+                <div id="terminal" class="rounded-lg overflow-hidden">
+                    <div class="terminal-header px-4 py-2 flex items-center gap-2">
+                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                    </div>
+                    <div id="terminal-body" class="terminal-body p-4 fira-code text-sm h-96 overflow-y-auto">
+                        <!-- Content will be injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Balanço -->
+        <section id="balanco" class="mb-24 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-slate-800">Balanço: Benefícios e Limitações</h3>
+                <p class="mt-2 text-slate-500">Nenhuma ferramenta é uma bala de prata. É crucial entender ambos os lados.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg border border-slate-200">
+                    <h4 class="font-bold text-xl text-green-700 mb-4">✓ Benefícios</h4>
+                    <ul class="space-y-3 text-slate-600">
+                        <li><strong class="text-slate-700">Velocidade:</strong> Análises que levam horas são feitas em minutos.</li>
+                        <li><strong class="text-slate-700">Consistência:</strong> Reduz o viés e o cansaço do analista humano.</li>
+                        <li><strong class="text-slate-700">Onboarding Acelerado:</strong> Ajuda novos membros a entenderem projetos complexos.</li>
+                        <li><strong class="text-slate-700">Documentação Automatizada:</strong> Gera uma base sólida para a documentação.</li>
+                        <li><strong class="text-slate-700">Code Review Aprimorado:</strong> Avalia o impacto arquitetural de Pull Requests.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg border border-slate-200">
+                    <h4 class="font-bold text-xl text-amber-700 mb-4">⚠️ Limitações</h4>
+                    <ul class="space-y-3 text-slate-600">
+                        <li><strong class="text-slate-700">"Alucinações":</strong> O modelo pode gerar informações incorretas; a validação humana é essencial.</li>
+                        <li><strong class="text-slate-700">Qualidade do Prompt:</strong> A qualidade da análise depende da qualidade da pergunta.</li>
+                        <li><strong class="text-slate-700">Janela de Contexto:</strong> Projetos muito grandes podem ser um desafio.</li>
+                        <li><strong class="text-slate-700">Interpretação vs. Decisão:</strong> A IA descreve, mas o arquiteto decide.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Futuro -->
+        <section id="futuro" class="scroll-mt-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-slate-800">Conclusão e Próximos Passos</h3>
+                <p class="mt-2 text-slate-500">A ferramenta não substitui o arquiteto, mas atua como um multiplicador de força.</p>
+            </div>
+            <div class="bg-white p-8 rounded-lg border border-slate-200">
+                <h4 class="font-bold text-xl text-slate-700 mb-4">Sugestões para Investigação Futura</h4>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-slate-50 p-4 rounded-md">
+                        <h5 class="font-semibold text-indigo-700">Integração com CI/CD</h5>
+                        <p class="text-sm text-slate-600">Análise automática de Pull Requests para alertar sobre desvios arquiteturais antes do merge.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-md">
+                        <h5 class="font-semibold text-indigo-700">Prompts Padrão</h5>
+                        <p class="text-sm text-slate-600">Desenvolver um "conjunto de prompts" para análises específicas (segurança, desempenho, etc.).</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-md">
+                        <h5 class="font-semibold text-indigo-700">Estudo Comparativo</h5>
+                        <p class="text-sm text-slate-600">Comparar a eficácia da análise por IA vs. análise manual em projetos reais.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center py-8 mt-16 border-t border-slate-200">
+        <p class="text-slate-500">Apresentação por <strong class="text-slate-600">[O seu Nome]</strong></p>
+        <p class="text-sm text-slate-400">Orientador: [Nome do Orientador]</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const terminalBody = document.getElementById('terminal-body');
+            const buttons = document.querySelectorAll('.demo-btn');
+            const btnStep1 = document.getElementById('btn-step1');
+            const btnStep2 = document.getElementById('btn-step2');
+            const btnStep3 = document.getElementById('btn-step3');
+
+            const content = {
+                step1: {
+                    command: `gemini --context "src/**" "Descreva em tópicos a arquitetura deste projeto..."`,
+                    output: `Analisando o código-fonte...
+
+A arquitetura do projeto parece seguir um padrão Model-View-Controller (MVC):
+
+- **Models:** Localizados em 'src/models'. Responsáveis pela lógica de negócio e interação com a base de dados. Ficheiros incluem 'user.js' e 'product.js'.
+
+- **Views:** Embora não haja ficheiros de template, a lógica de renderização parece estar acoplada aos controllers, sugerindo uma API RESTful.
+
+- **Controllers:** Em 'src/controllers'. Orquestram o fluxo de dados entre os models e as respostas HTTP. Ficheiros como 'authController.js' e 'productController.js' definem os endpoints.
+
+- **Dependencies:** O 'package.json' lista 'Express.js' como o framework principal e 'Mongoose' para a interação com MongoDB.`
+                },
+                step2: {
+                    command: `gemini --context mudancas_arquitetura.diff "Analise este 'diff'. Quais as principais mudanças arquiteturais?"`,
+                    output: `Analisando o diff...
+
+As mudanças introduzem alterações significativas:
+
+- **Nova Dependência:** Foi adicionado um novo módulo 'src/services/paymentGateway.js'. Isto introduz uma dependência externa para processamento de pagamentos.
+
+- **Alteração de Responsabilidade:** O 'productController.js' foi modificado para chamar o novo 'paymentGateway'. A responsabilidade de pagamento, que antes poderia estar implícita, agora é explícita.
+
+- **Aumento de Acoplamento:** O controller de produtos agora está acoplado ao novo serviço de pagamento. Uma falha no gateway pode impactar diretamente a funcionalidade de produtos.
+
+- **Risco Potencial:** A introdução de um gateway de pagamento aumenta a superfície de ataque e exige considerações de segurança adicionais (chaves de API, tratamento de dados sensíveis).`
+                },
+                step3: {
+                    command: `cat mudancas_arquitetura.diff`,
+                    output: `diff --git a/src/controllers/productController.js b/src/controllers/productController.js
+--- a/src/controllers/productController.js
++++ b/src/controllers/productController.js
+@@ -1,5 +1,6 @@
+ const Product = require('../models/product');
++const paymentGateway = require('../services/paymentGateway');
+ 
+ exports.purchaseProduct = async (req, res) => {
+   try {
+     const { productId, userId, paymentInfo } = req.body;
+-    // Lógica de compra simplificada
++    // Lógica de compra com gateway
++    const paymentResult = await paymentGateway.process(paymentInfo);
++    if (!paymentResult.success) {
++      return res.status(400).json({ error: 'Pagamento falhou' });
++    }
+     // ... resto da lógica
+   } catch (error) {
+     res.status(500).json({ error: error.message });
+   }
+ };
+diff --git a/src/services/paymentGateway.js b/src/services/paymentGateway.js
+new file mode 100644
+--- /dev/null
++++ b/src/services/paymentGateway.js
+@@ -0,0 +1,7 @@
++// Simulação de um serviço de gateway de pagamento
++
++exports.process = async (paymentInfo) => {
++  console.log('Processando pagamento:', paymentInfo);
++  // Retorna sucesso para a demonstração
++  return { success: true, transactionId: 'xyz123' };
++};`
+                }
+            };
+
+            function renderTerminal(step) {
+                const data = content[step];
+                terminalBody.innerHTML = `
+                    <div class="mb-4">
+                        <span class="prompt-char">$ </span><span class="command-text">${data.command}</span>
+                    </div>
+                    <div class="output-text whitespace-pre-wrap">${data.output}</div>
+                `;
+            }
+
+            function setActiveButton(activeBtn) {
+                buttons.forEach(btn => {
+                    btn.classList.remove('active', 'bg-indigo-600', 'text-white');
+                    btn.classList.add('bg-slate-200', 'text-slate-700');
+                });
+                activeBtn.classList.add('active', 'bg-indigo-600', 'text-white');
+                activeBtn.classList.remove('bg-slate-200', 'text-slate-700');
+            }
+
+            btnStep1.addEventListener('click', () => {
+                renderTerminal('step1');
+                setActiveButton(btnStep1);
+            });
+            btnStep2.addEventListener('click', () => {
+                renderTerminal('step2');
+                setActiveButton(btnStep2);
+            });
+            btnStep3.addEventListener('click', () => {
+                renderTerminal('step3');
+                setActiveButton(btnStep3);
+            });
+
+            // Initial render
+            renderTerminal('step1');
+
+            // Navigation scroll highlighting
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: "-50% 0px -50% 0px" });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
