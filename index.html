@@ -57,7 +57,7 @@
     <header id="header" class="bg-slate-50/80 backdrop-blur-lg sticky top-0 z-50 border-b border-slate-200">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <h1 class="text-lg md:text-xl font-bold text-indigo-600">
-                Análise de Conformidade Arquitetural com IA
+                Análise de Conformidade com Gemini CLI
             </h1>
             <div class="hidden md:flex space-x-8">
                 <a href="#problema" class="nav-link font-medium text-slate-600 border-b-2 border-transparent pb-1">O Problema</a>
@@ -86,9 +86,9 @@
     <main class="container mx-auto px-6 py-8 md:py-16">
         <!-- Hero Section -->
         <section id="hero" class="text-center mb-24">
-            <h2 class="text-4xl md:text-5xl font-bold text-slate-800 mb-4">Análise de Conformidade Arquitetural Assistida por IA</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-slate-800 mb-4">Análise de Conformidade Arquitetural com Gemini CLI</h2>
             <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
-                Uma exploração interativa de como uma ferramenta CLI baseada em IA pode rastrear a conformidade arquitetural, garantindo que a arquitetura implementada permaneça alinhada com o design planejado ao longo do tempo.
+                Utilizando um agente de IA interativo para automatizar a detecção de desvios arquiteturais e garantir a integridade do design do software ao longo do tempo.
             </p>
         </section>
 
@@ -117,17 +117,17 @@
                 <div class="space-y-4">
                     <div class="bg-white p-4 rounded-lg border border-slate-200">
                         <h5 class="font-bold text-slate-700">Análise Manual Lenta</h5>
-                        <p class="text-slate-600">Verificar a conformidade arquitetural de cada commit é um processo demorado e suscetível a erros.</p>
+                        <p class="text-slate-600">Verificar a conformidade arquitetural de cada alteração é um processo demorado e suscetível a erros humanos.</p>
                     </div>
                     <div class="bg-white p-4 rounded-lg border border-slate-200">
                         <h5 class="font-bold text-slate-700">Documentação Desatualizada</h5>
-                        <p class="text-slate-600">A documentação raramente acompanha a evolução do código, tornando-se obsoleta rapidamente.</p>
+                        <p class="text-slate-600">A documentação raramente acompanha a evolução do código, tornando-se uma fonte de informação não confiável.</p>
                     </div>
                 </div>
             </div>
             <div class="mt-12 text-center p-6 bg-indigo-50 border border-indigo-200 rounded-lg">
                 <p class="text-lg font-medium text-indigo-800">
-                    <span class="font-bold">Pergunta Central:</span> Como podemos monitorar e garantir a conformidade arquitetural de um software de forma eficiente ao longo de seu ciclo de vida?
+                    <span class="font-bold">Pergunta Central:</span> Como podemos monitorar e garantir a conformidade arquitetural de um software de forma eficiente e automatizada ao longo de seu ciclo de vida?
                 </p>
             </div>
         </section>
@@ -135,17 +135,22 @@
         <!-- Section 2: A Ferramenta -->
         <section id="ferramenta" class="mb-24 scroll-mt-20">
             <div class="text-center mb-12">
-                <h3 class="text-3xl font-bold text-slate-800">Apresentando a Tecnologia</h3>
-                <p class="mt-2 text-slate-500">A IA combinada com ferramentas CLI pode revolucionar a análise arquitetural.</p>
+                <h3 class="text-3xl font-bold text-slate-800">A Ferramenta: Gemini CLI</h3>
+                <p class="mt-2 text-slate-500">Um agente de IA que opera diretamente no seu ambiente de desenvolvimento.</p>
             </div>
-            <div class="grid md:grid-cols-2 gap-8">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
                 <div class="bg-white p-6 rounded-lg border border-slate-200">
-                    <h4 class="font-bold text-xl text-slate-700 mb-2">IA Avançada</h4>
-                    <p class="text-slate-600">Modelos de IA multimodais que compreendem texto, código e contexto, oferecendo análises profundas e precisas.</p>
+                    <h4 class="font-bold text-xl text-slate-700 mb-2">O que é o Gemini CLI?</h4>
+                    <p class="text-slate-600">É uma interface de linha de comando (CLI) que permite interagir com os modelos de IA do Google. Ele pode ler arquivos locais, executar comandos e entender o contexto do seu projeto de software para realizar tarefas complexas.</p>
                 </div>
                 <div class="bg-white p-6 rounded-lg border border-slate-200 ring-2 ring-indigo-500">
-                    <h4 class="font-bold text-xl text-indigo-700 mb-2">Diferencial: AI CLI</h4>
-                    <p class="text-slate-600">Uma interface de linha de comando que analisa arquivos locais com <strong class="text-indigo-600">--context</strong>, garantindo privacidade e segurança do código.</p>
+                    <h4 class="font-bold text-xl text-indigo-700 mb-2">Capacidades Chave</h4>
+                    <ul class="space-y-2 text-slate-600 list-disc list-inside">
+                        <li><strong>Análise de Código:</strong> Lê e interpreta código-fonte em várias linguagens.</li>
+                        <li><strong>Execução de Comandos:</strong> Utiliza ferramentas do sistema (glob, search) para coletar dados.</li>
+                        <li><strong>Raciocínio Contextual:</strong> Combina regras arquiteturais com o código existente.</li>
+                        <li><strong>Interatividade:</strong> Permite um diálogo contínuo para refinar a análise.</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -153,25 +158,24 @@
         <!-- Section 3: A Proposta -->
         <section id="proposta" class="mb-24 scroll-mt-20">
             <div class="text-center mb-12">
-                <h3 class="text-3xl font-bold text-slate-800">AI CLI como Assistente de Conformidade Arquitetural</h3>
-                <p class="mt-2 text-slate-500">Automatizando a análise de conformidade em dois cenários principais.</p>
+                <h3 class="text-3xl font-bold text-slate-800">Gemini CLI como Assistente de Conformidade</h3>
+                <p class="mt-2 text-slate-500">Um fluxo de trabalho interativo para garantir a integridade da arquitetura.</p>
             </div>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-6 rounded-lg border border-slate-200 space-y-4">
-                    <h4 class="font-bold text-xl text-slate-700">Cenário 1: Análise Estática</h4>
-                    <p class="text-slate-600">Analisa o estado atual do repositório (HEAD) para verificar a conformidade com a arquitetura planejada.</p>
-                    <div class="fira-code text-sm bg-slate-100 p-4 rounded-md text-slate-800">
-                        <p class="font-medium">Exemplo de Pergunta:</p>
-                        <p class="mt-1">"A arquitetura atual está conforme o padrão MVC planejado? Quais os principais módulos?"</p>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="bg-white p-6 rounded-lg border border-slate-200">
+                    <div class="text-3xl mb-4">1️⃣</div>
+                    <h4 class="font-bold text-lg text-slate-700 mb-2">Definir Regras</h4>
+                    <p class="text-slate-600 text-sm">Fornecer ao Gemini as regras da arquitetura (ex: "A camada UI não pode importar da camada Data").</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg border border-slate-200 space-y-4">
-                    <h4 class="font-bold text-xl text-slate-700">Cenário 2: Análise Evolutiva</h4>
-                    <p class="text-slate-600">Analisa o <strong class="text-indigo-600">diff</strong> entre commits para avaliar impactos na conformidade arquitetural.</p>
-                    <div class="fira-code text-sm bg-slate-100 p-4 rounded-md text-slate-800">
-                        <p class="font-medium">Exemplo de Pergunta:</p>
-                        <p class="mt-1">"Este diff mantém a conformidade com o padrão arquitetural? Houve aumento de acoplamento?"</p>
-                    </div>
+                <div class="bg-white p-6 rounded-lg border border-slate-200">
+                    <div class="text-3xl mb-4">2️⃣</div>
+                    <h4 class="font-bold text-lg text-slate-700 mb-2">Analisar Código</h4>
+                    <p class="text-slate-600 text-sm">Instruir o Gemini a ler o código-fonte e buscar por violações das regras definidas.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg border border-slate-200">
+                    <div class="text-3xl mb-4">3️⃣</div>
+                    <h4 class="font-bold text-lg text-slate-700 mb-2">Gerar Relatório</h4>
+                    <p class="text-slate-600 text-sm">Receber uma lista de violações, com arquivos e linhas, e até sugestões de correção.</p>
                 </div>
             </div>
         </section>
@@ -179,15 +183,15 @@
         <!-- Section 4: Demonstração -->
         <section id="demonstracao" class="mb-24 scroll-mt-20">
             <div class="text-center mb-12">
-                <h3 class="text-3xl font-bold text-slate-800">Demonstração Interativa</h3>
-                <p class="mt-2 text-slate-500">Simule o uso da AI CLI para verificar a conformidade arquitetural. Clique nos passos abaixo.</p>
+                <h3 class="text-3xl font-bold text-slate-800">Demonstração Prática</h3>
+                <p class="mt-2 text-slate-500">Simulando a detecção de uma violação em uma arquitetura em camadas.</p>
             </div>
             <div class="bg-white p-4 sm:p-6 rounded-lg border border-slate-200">
                 <div class="flex flex-wrap gap-2 border-b border-slate-200 pb-4 mb-4">
-                    <button id="btn-step1" class="demo-btn active bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium">Passo 1: Analisar Commit Antigo</button>
-                    <button id="btn-step2" class="demo-btn bg-slate-200 text-slate-700 px-4 py-2 rounded-md text-sm font-medium">Passo 2: Analisar Evolução (Diff)</button>
-                    <button id="btn-step3" class="demo-btn bg-slate-200 text-slate-700 px-4 py-2 rounded-md text-sm font-medium">Ver Diff</button>
-                    <button id="btn-step4" class="demo-btn bg-slate-200 text-slate-700 px-4 py-2 rounded-md text-sm font-medium">Passo 4: Verificar Conformidade</button>
+                    <button id="btn-step1" class="demo-btn active bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium">Passo 1: Definir a Regra</button>
+                    <button id="btn-step2" class="demo-btn bg-slate-200 text-slate-700 px-4 py-2 rounded-md text-sm font-medium">Passo 2: Encontrar Violações</button>
+                    <button id="btn-step3" class="demo-btn bg-slate-200 text-slate-700 px-4 py-2 rounded-md text-sm font-medium">Passo 3: Exibir Violação</button>
+                    <button id="btn-step4" class="demo-btn bg-slate-200 text-slate-700 px-4 py-2 rounded-md text-sm font-medium">Passo 4: Sugerir Correção</button>
                 </div>
                 <div id="terminal" class="rounded-lg overflow-hidden">
                     <div class="terminal-header px-4 py-2 flex items-center gap-2">
@@ -206,26 +210,26 @@
         <section id="balanco" class="mb-24 scroll-mt-20">
             <div class="text-center mb-12">
                 <h3 class="text-3xl font-bold text-slate-800">Balanço: Benefícios e Limitações</h3>
-                <p class="mt-2 text-slate-500">Uma análise equilibrada dos prós e contras da abordagem.</p>
+                <p class="mt-2 text-slate-500">Uma análise equilibrada do uso do Gemini CLI para esta finalidade.</p>
             </div>
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="bg-white p-6 rounded-lg border border-slate-200">
                     <h4 class="font-bold text-xl text-green-700 mb-4">✓ Benefícios</h4>
                     <ul class="space-y-3 text-slate-600">
-                        <li><strong class="text-slate-700">Velocidade:</strong> Análise de conformidade em minutos, não horas.</li>
-                        <li><strong class="text-slate-700">Consistência:</strong> Reduz viés humano e garante análises uniformes.</li>
-                        <li><strong class="text-slate-700">Onboarding:</strong> Facilita a compreensão de arquiteturas complexas por novos desenvolvedores.</li>
-                        <li><strong class="text-slate-700">Documentação:</strong> Gera relatórios para manter a documentação atualizada.</li>
-                        <li><strong class="text-slate-700">Revisão de Código:</strong> Identifica desvios arquiteturais em pull requests.</li>
+                        <li><strong class="text-slate-700">Velocidade e Automação:</strong> Análise de conformidade em minutos, não horas ou dias.</li>
+                        <li><strong class="text-slate-700">Análise Contextual:</strong> Entende o código, não apenas padrões de texto, para reduzir falsos positivos.</li>
+                        <li><strong class="text-slate-700">Detecção Precoce:</strong> Pode ser integrado ao fluxo de desenvolvimento para pegar desvios na hora.</li>
+                        <li><strong class="text-slate-700">Base de Conhecimento:</strong> A IA aprende as regras e pode ser consultada por novos membros da equipe.</li>
+                        <li><strong class="text-slate-700">Segurança:</strong> Analisa o código localmente, sem a necessidade de enviá-lo para a nuvem.</li>
                     </ul>
                 </div>
                 <div class="bg-white p-6 rounded-lg border border-slate-200">
                     <h4 class="font-bold text-xl text-amber-700 mb-4">⚠️ Limitações</h4>
                     <ul class="space-y-3 text-slate-600">
-                        <li><strong class="text-slate-700">Alucinações:</strong> A IA pode gerar análises imprecisas, exigindo validação humana.</li>
-                        <li><strong class="text-slate-700">Qualidade do Prompt:</strong> Resultados dependem de perguntas bem formuladas.</li>
-                        <li><strong class="text-slate-700">Escala:</strong> Projetos muito grandes podem exceder a janela de contexto.</li>
-                        <li><strong class="text-slate-700">Interpretação:</strong> A IA sugere, mas decisões arquiteturais cabem ao humano.</li>
+                        <li><strong class="text-slate-700">Qualidade do Prompt:</strong> A eficácia da análise depende de regras e perguntas bem formuladas.</li>
+                        <li><strong class="text-slate-700">Janela de Contexto:</strong> Projetos muito grandes podem exigir estratégias para análise em partes.</li>
+                        <li><strong class="text-slate-700">Validação Humana:</strong> A IA é um assistente; a decisão final e a validação crítica cabem ao arquiteto.</li>
+                        <li><strong class="text-slate-700">Configuração Inicial:</strong> Requer a instalação e configuração do Gemini CLI e a definição das regras.</li>
                     </ul>
                 </div>
             </div>
@@ -235,22 +239,22 @@
         <section id="futuro" class="scroll-mt-20">
             <div class="text-center mb-12">
                 <h3 class="text-3xl font-bold text-slate-800">Conclusão e Próximos Passos</h3>
-                <p class="mt-2 text-slate-500">A AI CLI potencializa o arquiteto, mas não o substitui.</p>
+                <p class="mt-2 text-slate-500">O Gemini CLI potencializa o arquiteto, mas não o substitui.</p>
             </div>
             <div class="bg-white p-8 rounded-lg border border-slate-200">
                 <h4 class="font-bold text-xl text-slate-700 mb-4">Sugestões para Investigação Futura</h4>
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="bg-slate-50 p-4 rounded-md">
                         <h5 class="font-semibold text-indigo-700">Integração com CI/CD</h5>
-                        <p class="text-sm text-slate-600">Automatizar verificações de conformidade em pull requests para prevenir desvios.</p>
+                        <p class="text-sm text-slate-600">Automatizar a execução do Gemini CLI em pipelines de integração contínua para validar pull requests.</p>
                     </div>
                     <div class="bg-slate-50 p-4 rounded-md">
-                        <h5 class="font-semibold text-indigo-700">Prompts Específicos</h5>
-                        <p class="text-sm text-slate-600">Criar templates de prompts para análises de conformidade, segurança e desempenho.</p>
+                        <h5 class="font-semibold text-indigo-700">Catálogo de Prompts</h5>
+                        <p class="text-sm text-slate-600">Desenvolver um conjunto de prompts reutilizáveis para verificar padrões arquiteturais comuns (MVC, Hexagonal, etc.).</p>
                     </div>
                     <div class="bg-slate-50 p-4 rounded-md">
-                        <h5 class="font-semibold text-indigo-700">Validação Empírica</h5>
-                        <p class="text-sm text-slate-600">Comparar a eficácia da IA com análises manuais em projetos reais.</p>
+                        <h5 class="font-semibold text-indigo-700">Análise de Métricas</h5>
+                        <p class="text-sm text-slate-600">Utilizar a IA para extrair e analisar métricas de software (acoplamento, coesão) a partir do código.</p>
                     </div>
                 </div>
             </div>
@@ -258,8 +262,8 @@
     </main>
 
     <footer class="text-center py-8 mt-16 border-t border-slate-200">
-        <p class="text-slate-500">Apresentação por <strong class="text-slate-600">Seu Nome</strong></p>
-        <p class="text-sm text-slate-400">Orientador: Nome do Orientador</p>
+        <p class="text-slate-500">Apresentação por <strong class="text-slate-600">Marcos Paulo</strong></p>
+        <p class="text-sm text-slate-400">Orientador: Valter Vieira</p>
     </footer>
 
     <script>
@@ -275,70 +279,22 @@
 
             const content = {
                 step1: {
-                    command: 'ai-cli --context "src/**" "Descreva em tópicos a arquitetura deste projeto..."',
-                    output: `Analisando o código-fonte...
-
-A arquitetura do projeto segue o padrão Model-View-Controller (MVC):
-
-- **Models:** Em 'src/models'. Gerenciam a lógica de negócio e interação com o banco de dados. Arquivos incluem 'user.js' e 'product.js'.
-- **Views:** A lógica de renderização está acoplada aos controllers, indicando uma API RESTful.
-- **Controllers:** Em 'src/controllers'. Orquestram o fluxo de dados. Arquivos como 'authController.js' e 'productController.js' definem endpoints.
-- **Dependências:** O 'package.json' lista 'Express.js' como framework principal e 'Mongoose' para MongoDB.`
+                    command: 'cat arquitetura.md',
+                    output: `## Regras da Arquitetura em Camadas\n\n1.  **UI Layer (src/ui):** Contém componentes de interface. Não pode acessar a camada de dados diretamente.\n\n2.  **Business Layer (src/business):** Contém a lógica de negócio. Orquestra o fluxo de dados.\n\n3.  **Data Layer (src/data):** Responsável pelo acesso a dados. **NÃO PODE** importar ou depender de módulos da camada de UI ou Business.`
                 },
                 step2: {
-                    command: 'ai-cli --context mudancas_arquitetura.diff "Analise este diff. Quais as principais mudanças arquiteturais?"',
-                    output: `Analisando o diff...
-
-Mudanças significativas detectadas:
-
-- **Nova Dependência:** Adição do módulo 'src/services/paymentGateway.js', introduzindo um serviço externo de pagamento.
-- **Alteração de Responsabilidade:** O 'productController.js' agora chama o 'paymentGateway', explicitando a lógica de pagamento.
-- **Aumento de Acoplamento:** O controller de produtos está acoplado ao serviço de pagamento, podendo impactar a modularidade.
-- **Risco Potencial:** O gateway de pagamento aumenta a superfície de ataque, exigindo cuidados com segurança.`
+                    command: 'gemini --context src/data/UserRepository.js arquitetura.md \"Verifique se o arquivo UserRepository.js viola alguma regra descrita no arquivo de arquitetura. Liste as violações.\"',
+                    output: `Analisando o arquivo com base nas regras...\n\n**Violação de Arquitetura Encontrada:**\n\n- **Arquivo:** src/data/UserRepository.js\n- **Regra Violada:** \"A camada de dados (src/data) NÃO PODE importar ou depender de módulos da camada de UI.\"\n- **Linha:** 3\n- **Detalhe:** O arquivo importa o componente 'Button' de 'src/ui/components/Button.js', o que é uma violação direta da regra de dependência.`
                 },
                 step3: {
-                    command: 'cat mudancas_arquitetura.diff',
-                    output: `diff --git a/src/controllers/productController.js b/src/controllers/productController.js
---- a/src/controllers/productController.js
-+++ b/src/controllers/productController.js
-@@ -1,5 +1,6 @@
- const Product = require('../models/product');
-+const paymentGateway = require('../services/paymentGateway');
- exports.purchaseProduct = async (req, res) => {
-   try {
-     const { productId, userId, paymentInfo } = req.body;
-- // Lógica de compra simplificada
-+ // Lógica de compra com gateway
-+ const paymentResult = await paymentGateway.process(paymentInfo);
-+ if (!paymentResult.success) {
-+ return res.status(400).json({ error: 'Pagamento falhou' });
-+ }
-     // ... resto da lógica
-   } catch (error) {
-     res.status(500).json({ error: error.message });
-   }
- };
-diff --git a/src/services/paymentGateway.js b/src/services/paymentGateway.js
-new file mode 100644
---- /dev/null
-+++ b/src/services/paymentGateway.js
-@@ -0,0 +1,7 @@
-+// Simulação de um serviço de gateway de pagamento
-+
-+exports.process = async (paymentInfo) => {
-+ console.log('Processando pagamento:', paymentInfo);
-+ // Retorna sucesso para a demonstração
-+ return { success: true, transactionId: 'xyz123' };
-+};`
+                    command: 'cat src/data/UserRepository.js',
+                    output: `// src/data/UserRepository.js\n\nimport { Button } from '../ui/components/Button'; // <-- VIOLAÇÃO\n\nclass UserRepository {\n  findUserById(id) {\n    // ...lógica de busca\n    console.log('Usando a aparência de botão:', Button.appearance); // Uso indevido\n  }\n}`
                 },
                 step4: {
-                    command: 'ai-cli --context "src/**" "A arquitetura atual está conforme o padrão MVC planejado? Identifique desvios."',
-                    output: `Verificando conformidade arquitetural...
-
-**Análise de Conformidade:**
-- **Conformidade Geral:** A arquitetura mantém o padrão MVC, com separação clara entre modelos, controladores e lógica de apresentação (API RESTful).
-- **Desvio Detectado:** A introdução do 'paymentGateway.js' no 'productController.js' aumenta o acoplamento, violando parcialmente o princípio de separação de responsabilidades do MVC. Sugere-se encapsular o gateway em um serviço independente.
-- **Recomendação:** Refatorar para injetar o serviço de pagamento via injeção de dependência, reduzindo o acoplamento direto.`
+                    command: 'gemini --context src/data/UserRepository.js \"Sugira como corrigir a violação arquitetural neste arquivo.\"',
+                    output: `Analisando o código para correção...\n\n**Sugestão de Correção:**\n\nA violação ocorre porque a camada de dados está acessando um detalhe de implementação da camada de UI, provavelmente para usar uma constante.\n\n**Plano de Refatoração:**\n1.  **Mover a Constante:** Crie um local compartilhado e neutro para constantes, como 'src/shared/constants.js'.\n2.  **Criar a Constante:** Adicione a constante 'appearance' (ou um nome mais genérico) neste novo arquivo.\n    \
+    export const APPEARANCE = { PRIMARY: 'primary', GHOST: 'ghost' };\
+3.  **Atualizar Referências:** Faça tanto o 'UserRepository.js' quanto o 'Button.js' importarem a constante a partir de 'src/shared/constants.js', eliminando a dependência direta entre as camadas.`
                 }
             };
 
